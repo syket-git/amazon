@@ -1,0 +1,88 @@
+a{
+    color: white;
+    text-decoration: none;
+    background-color: transparent;
+}
+a:hover{
+    text-decoration:none;
+}
+.header{
+    background-color: rgb(14, 3, 34);
+    color: white;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+
+}
+.h2{
+    margin-top: 10px;
+    margin-left: 15px;
+    cursor: pointer;
+}
+.h2 a:hover{
+    color: gold;
+}
+.first{
+    display: flex;
+    flex-wrap: wrap;
+}
+.first .bar{
+    margin-left: 30px;
+    margin-top: 14px;
+    cursor: pointer;
+    font-size: 23px;
+}
+.bar-part{
+    position: fixed;
+    transform: translateX(-30rem);
+    width: 20rem;
+    height: 100%;
+    background-color: #0e0322;
+    transition: .5s;
+    margin-top: 63px;
+    color: white;
+    border-top: .5px solid white;
+    border-top-right-radius: 5px;
+    z-index: 1;
+}
+.open{
+    
+    transform: translateX(0);
+}
+
+.bar-part h2{
+    margin-top: 20px;
+    text-align: center;
+}
+.bar-part ul{
+    list-style:none;
+}
+.bar-part ul li{
+    font-size: 18px;
+    margin-bottom: 15px;
+}
+.bar-part ul li a:hover{
+    color: gold;
+}
+
+.third-part{
+    float: right;
+}
+.third-part ul{
+    float: right;
+    list-style: none;
+    margin-top: 20px;
+}
+.third-part ul li{
+    display:inline;
+    margin-right: 15px;
+}
+.third-part ul li a{
+    font-size: 18px;
+}
+.third-part ul li a:hover{
+    color: gold;
+}
+.third-part ul li:hover{
+    text-decoration: none;
+}

@@ -1,0 +1,16 @@
+.action{
+    border: 1px solid lightgray;
+    padding: 30px;
+    border-radius: 5px;
+}
+.button{
+    display: flex;
+    flex-direction: column;
+}
+.Actual-button{
+    border: 2px solid gray;
+}
+
+.Actual-button:hover{
+    border: 2px solid black;
+}
