@@ -7,7 +7,8 @@ const fakeData = [
         description: 'A shirt is a cloth garment for the upper body. In British English, a shirt is more specifically a garment with a collar, sleeves with cuffs, and a full vertical opening with buttons or snaps.',
         price: 45,
         size: "xl",
-        ratings: "320"
+        ratings: "320",
+        stock: 100
 
     },
     {
@@ -18,7 +19,8 @@ const fakeData = [
         description: 'A shirt is a cloth garment for the upper body. In British English, a shirt is more specifically a garment with a collar, sleeves with cuffs, and a full vertical opening with buttons or snaps.',
         price: 30,
         size: "xl",
-        ratings: "167"
+        ratings: "167",
+        stock: 37
 
     },
     {
@@ -29,7 +31,8 @@ const fakeData = [
         description: 'A shirt is a cloth garment for the upper body. In British English, a shirt is more specifically a garment with a collar, sleeves with cuffs, and a full vertical opening with buttons or snaps.',
         price: 40,
         size: "xl",
-        ratings: "515"
+        ratings: "515",
+        stock: 6
 
     },
     {
@@ -40,7 +43,8 @@ const fakeData = [
         description: 'A pant is a cloth garment for the upper body. In British English, a pant is more specifically a garment with a collar, sleeves with cuffs, and a full vertical opening with buttons or snaps.',
         price: 50,
         size: "8",
-        ratings: "320" 
+        ratings: "320",
+        stock: 9
     }, 
     {
         id: 5,
@@ -50,7 +54,8 @@ const fakeData = [
         description: 'A pant is a cloth garment for the upper body. In British English, a pant is more specifically a garment with a collar, sleeves with cuffs, and a full vertical opening with buttons or snaps.',
         price: 67,
         size: "8",
-        ratings: "216" 
+        ratings: "216",
+        stock: 6 
     },
     {
         id: 6,
@@ -60,7 +65,8 @@ const fakeData = [
         description: 'A pant is a cloth garment for the upper body. In British English, a pant is more specifically a garment with a collar, sleeves with cuffs, and a full vertical opening with buttons or snaps.',
         price: 54,
         size: "8",
-        ratings: "231" 
+        ratings: "231",
+        stock: 83 
     }, 
     {
         id: 7,
@@ -70,7 +76,8 @@ const fakeData = [
         description: 'A pant is a cloth garment for the upper body. In British English, a pant is more specifically a garment with a collar, sleeves with cuffs, and a full vertical opening with buttons or snaps.',
         price: 58,
         size: "8",
-        ratings: "226" 
+        ratings: "226",
+        stock: 6 
     }, 
     {
         id: 8,
@@ -80,7 +87,8 @@ const fakeData = [
         description: 'A shoes is a cloth garment for the upper body. In British English, a shoes is more specifically a garment with a collar, sleeves with cuffs, and a full vertical opening with buttons or snaps.',
         price: 108,
         size: "8",
-        ratings: "133" 
+        ratings: "133",
+        stock: 37 
     },  
     {
         id: 9,
@@ -90,7 +98,8 @@ const fakeData = [
         description: 'A shoes is a cloth garment for the upper body. In British English, a shoes is more specifically a garment with a collar, sleeves with cuffs, and a full vertical opening with buttons or snaps.',
         price: 89,
         size: "8",
-        ratings: "343" 
+        ratings: "343",
+        stock: 6 
     },  
     {
         id: 10,
@@ -100,7 +109,8 @@ const fakeData = [
         description: 'A shoes is a cloth garment for the upper body. In British English, a shoes is more specifically a garment with a collar, sleeves with cuffs, and a full vertical opening with buttons or snaps.',
         price: 78,
         size: "8",
-        ratings: "378" 
+        ratings: "378",
+        stock: 78 
     },  
     {
         id: 11,
@@ -110,7 +120,8 @@ const fakeData = [
         description: 'A shoes is a cloth garment for the upper body. In British English, a shoes is more specifically a garment with a collar, sleeves with cuffs, and a full vertical opening with buttons or snaps.',
         price: 58,
         size: "8",
-        ratings: "23" 
+        ratings: "23",
+        stock: 6 
     },  
     {
         id: 12,
@@ -120,7 +131,8 @@ const fakeData = [
         description: 'A shoes is a cloth garment for the upper body. In British English, a shoes is more specifically a garment with a collar, sleeves with cuffs, and a full vertical opening with buttons or snaps.',
         price: 39,
         size: "8",
-        ratings: "78" 
+        ratings: "78",
+        stock: 10 
     },  
      
 ]

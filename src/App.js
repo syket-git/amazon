@@ -7,8 +7,10 @@ import Header from '../src/components/Header/Header';
 import Content from '../src/components/Content/Content';
 import Footer from '../src/components/Footer/Footer';
 import ClickProduct from '../src/components/ClickProduct/ClickProduct';
+import CartScreen from './components/CartScree/CartScreen';
 
 const App = () => {
+
   return(
     <div>
       <Router>
@@ -18,8 +20,12 @@ const App = () => {
               <Content></Content>
               <Footer></Footer>
           </Route>
-          <Route path="/product/:id">
+          <Route exact path="/product/:id">
             <ClickProduct></ClickProduct>
+          </Route>
+          <Route exact path="/cart/:id?">
+            <Header></Header>
+            <CartScreen></CartScreen>
           </Route>
         </Switch>
       </Router>

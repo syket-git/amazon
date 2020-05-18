@@ -1,11 +1,18 @@
-import React from 'react';
+import React, { useState, createContext } from 'react';
 import { Link } from 'react-router-dom';
 import './ProductDetails.css';
 import ReactImageMagnify from 'react-image-magnify';
+import {Badge} from 'react-bootstrap';
+
+export const cartContext = createContext();
 
 const ProductDetails = (props) => {
   console.log(props.product);
+  const [cart, setCart] = useState([]);
+  const [qty, setQty] = useState(1);
+
   const {
+    id,
     name,
     img,
     description,
@@ -15,7 +22,19 @@ const ProductDetails = (props) => {
     price,
   } = props.product;
   const backToHome = '< Back to Home';
+  const finalPrice = (parseInt(price) * parseInt(qty));
+
+  const handleCart = (product) => {
+    console.log("click product", product);
+    const newCart =  [...cart, product];
+    setCart(newCart);
+  }
+
+  console.log(cart);
+ 
+  
   return (
+    <cartContext.Provider value={cart}>
     <div>
       <div className="container mt-5">
         <div className="row d-flex flex-wrap justify-content-between">
@@ -48,33 +67,37 @@ const ProductDetails = (props) => {
           </div>
           <div className="col-md-4">
             <div className="action">
-              <h5>Price: ${price}</h5>
-              <p>Stock: InStock</p>
+              <h5>Price: ${finalPrice}</h5>
+            <p>Status: {(props.product.stock) > 0 ? <Badge pill variant="success">
+              Available</Badge> : <Badge pill variant="danger">Unavailable </Badge>}</p>
               <p>
-                Qty:{' '}
-                <select>
-                  <option value="1">1</option>
-                  <option value="2">2</option>
-                  <option value="3">3</option>
-                  <option value="4">4</option>
-                  <option value="5">5</option>
-                  <option value="6">6</option>
-                  <option value="7">7</option>
-                  <option value="8">8</option>
-                  <option value="9">9</option>
-                  <option value="10">10</option>
+                Quantity:{' '}
+                <select value={qty} onChange={(e) => {setQty(e.target.value)}}>
+                  {[...Array(props.product.stock).keys()].map(x => 
+                    <option value={x + 1}>{x+1}</option>
+                  )}
                 </select>
               </p>
               <div className="button">
-                <button className="btn btn-warning Actual-button">
-                  Add to Cart
-                </button>
+                {
+                  props.product.stock > 0 ? 
+                  
+                 
+                    <Link to={`/cart/${id}?qty=${qty}`}>
+                      <button onClick={() => handleCart(props.product)} className="btn btn-warning Actual-button">Add to Cart</button>
+                    </Link>
+                  
+                  
+                  : 
+                  <p>Out of Stock</p>
+                }
               </div>
             </div>
           </div>
         </div>
       </div>
     </div>
+    </cartContext.Provider>
   );
 };
 
