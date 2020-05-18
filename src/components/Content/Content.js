@@ -1,5 +1,4 @@
 import React, {useState, useEffect} from 'react';
-import fakeData from '../../../src/fakeData/fakeData';
 import Products from '../Products/Products';
 import {Spinner} from 'react-bootstrap';
 import './Content.css';

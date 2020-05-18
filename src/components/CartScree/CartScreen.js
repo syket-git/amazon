@@ -1,5 +1,4 @@
-import React, { useContext } from 'react';
-import {cartContext} from '../ProductDetails/ProductDetails'
+import React from 'react';
 
 const CartScreen = () => {
     const item = sessionStorage.getItem("item");
