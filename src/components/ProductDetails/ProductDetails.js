@@ -1,14 +1,12 @@
-import React, { useState, createContext } from 'react';
+import React, { useState, useContext } from 'react';
 import { Link } from 'react-router-dom';
 import './ProductDetails.css';
 import ReactImageMagnify from 'react-image-magnify';
-import {Badge} from 'react-bootstrap';
-
-export const cartContext = createContext();
+import { Badge } from 'react-bootstrap';
+import { cartContext } from '../../App';
 
 const ProductDetails = (props) => {
-  console.log(props.product);
-  const [cart, setCart] = useState([]);
+  const item = useContext(cartContext);
   const [qty, setQty] = useState(1);
 
   const {
@@ -22,27 +20,26 @@ const ProductDetails = (props) => {
     price,
   } = props.product;
   const backToHome = '< Back to Home';
-  const finalPrice = (parseInt(price) * parseInt(qty));
+  const finalPrice = parseInt(price) * parseInt(qty);
 
-  const handleCart = (product) => {
-    console.log("click product", product);
-    const newCart =  [...cart, product];
-    setCart(newCart);
-  }
+  const handleCart = (product, qty) => {
+    console.log('click product', product);
+    product.quantity = qty;
+    props.cartHandler(product);
+  };
 
-  console.log(cart);
- 
-  
+  console.log(props.cart);
+
   return (
-    <cartContext.Provider value={cart}>
     <div>
       <div className="container mt-5">
+        <p>Hello: {item.length}</p>
         <div className="row d-flex flex-wrap justify-content-between">
           <div className="col-md-4">
             <Link to="/">
               <p style={{ color: 'black' }}>{backToHome}</p>
             </Link>
-            
+
             <ReactImageMagnify
               {...{
                 smallImage: {
@@ -68,36 +65,48 @@ const ProductDetails = (props) => {
           <div className="col-md-4">
             <div className="action">
               <h5>Price: ${finalPrice}</h5>
-            <p>Status: {(props.product.stock) > 0 ? <Badge pill variant="success">
-              Available</Badge> : <Badge pill variant="danger">Unavailable </Badge>}</p>
+              <p>
+                Status:{' '}
+                {props.product.stock > 0 ? (
+                  <Badge pill variant="success">
+                    Available
+                  </Badge>
+                ) : (
+                  <Badge pill variant="danger">
+                    Unavailable{' '}
+                  </Badge>
+                )}
+              </p>
               <p>
                 Quantity:{' '}
-                <select value={qty} onChange={(e) => {setQty(e.target.value)}}>
-                  {[...Array(props.product.stock).keys()].map(x => 
-                    <option value={x + 1}>{x+1}</option>
-                  )}
+                <select
+                  value={qty}
+                  onChange={(e) => {
+                    setQty(e.target.value);
+                  }}
+                >
+                  {[...Array(props.product.stock).keys()].map((x) => (
+                    <option value={x + 1}>{x + 1}</option>
+                  ))}
                 </select>
               </p>
               <div className="button">
-                {
-                  props.product.stock > 0 ? 
-                  
-                 
-                    <Link to={`/cart/${id}?qty=${qty}`}>
-                      <button onClick={() => handleCart(props.product)} className="btn btn-warning Actual-button">Add to Cart</button>
-                    </Link>
-                  
-                  
-                  : 
+                {props.product.stock > 0 ? (
+                  <button
+                    onClick={() => handleCart(props.product, qty)}
+                    className="btn btn-warning Actual-button"
+                  >
+                    Add to Cart
+                  </button>
+                ) : (
                   <p>Out of Stock</p>
-                }
+                )}
               </div>
             </div>
           </div>
         </div>
       </div>
     </div>
-    </cartContext.Provider>
   );
 };
 
