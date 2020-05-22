@@ -5,11 +5,16 @@ import Content from '../src/components/Content/Content';
 import Footer from '../src/components/Footer/Footer';
 import ClickProduct from '../src/components/ClickProduct/ClickProduct';
 import CartScreen from './components/CartScree/CartScreen';
+import Error from './components/Error/Error';
+import SignIn from './components/SignIn/SignIn';
+import Signup from './components/Signup/Signup';
+import Cookies from 'js-cookie';
 
 export const cartContext = createContext();
 
 const App = () => {
   const [cart, setCart] = useState([]);
+  Cookies.set('cart', JSON.stringify(cart));
 
   const cartHandler = (data) => {
     const alreadyAdded = cart.find((crt) => crt.id === data.id);
@@ -58,6 +63,17 @@ const App = () => {
               DeleteFromCart={DeleteFromCart}
               cartQuantityHandler={cartQuantityHandler}
             ></CartScreen>
+          </Route>
+          <Route path="/signin">
+            <Header></Header>
+            <SignIn></SignIn>
+          </Route>
+          <Route path="/signup">
+            <Header></Header>
+            <Signup></Signup>
+          </Route>
+          <Route path="*">
+            <Error></Error>
           </Route>
         </Switch>
       </Router>

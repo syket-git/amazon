@@ -5,6 +5,7 @@ import './CartScreen.css'
 
 const CartScreen = (props) => {
   const items = useContext(cartContext);
+
   let totalQuantity = items.reduce((totalQ, item) => {
     return parseInt(totalQ) + parseInt(item.quantity);
   }, 0);
@@ -68,7 +69,7 @@ const CartScreen = (props) => {
                       <p>subtotal: ${item.price * item.quantity}</p>
                       <button
                         onClick={() => props.DeleteFromCart(item.id)}
-                        className="btn btn-warning"
+                        className="btn btn-warning Actual-button"
                       >
                         Delete
                       </button>
