@@ -10,7 +10,12 @@ import SignIn from './components/SignIn/SignIn';
 import Signup from './components/Signup/Signup';
 import Cookies from 'js-cookie';
 import { AuthContextProvider } from './components/useAuth/useAuth';
-import {PrivateRoute} from './components/useAuth/useAuth';
+import { PrivateRoute } from './components/useAuth/useAuth';
+import Shipment from './components/Shipment/Shipment';
+import Profile from './components/Profile/Profile';
+import UpdateProfile from './components/UpdateProfile/UpdateProfile';
+import ChangeEmailAddress from './components/ChangeEmailAddress/ChangeEmailAddress';
+import ChangePassword from './components/ChangePassword/ChangePassword';
 
 export const cartContext = createContext();
 
@@ -49,37 +54,57 @@ const App = () => {
   return (
     <AuthContextProvider>
       <cartContext.Provider value={cart}>
-      <Router>
-        <Switch>
-          <Route exact path="/">
-            <Header></Header>
-            <Content></Content>
-            <Footer></Footer>
-          </Route>
-          <Route exact path="/product/:id">
-            <ClickProduct cartHandler={cartHandler}></ClickProduct>
-          </Route>
-          <PrivateRoute exact path="/cart">
-            <Header></Header>
-            <CartScreen
-              cart={cart}
-              DeleteFromCart={DeleteFromCart}
-              cartQuantityHandler={cartQuantityHandler}
-            ></CartScreen>
-          </PrivateRoute>
-          <Route path="/signin">
-            <Header></Header>
-            <SignIn></SignIn>
-          </Route>
-          <Route path="/signup">
-            <Header></Header>
-            <Signup></Signup>
-          </Route>
-          <Route path="*">
-            <Error></Error>
-          </Route>
-        </Switch>
-      </Router>
+        <Router>
+          <Switch>
+            <Route exact path="/">
+              <Header></Header>
+              <Content></Content>
+              <Footer></Footer>
+            </Route>
+            <Route exact path="/product/:id">
+              <ClickProduct cartHandler={cartHandler}></ClickProduct>
+            </Route>
+            <Route exact path="/cart">
+              <Header></Header>
+              <CartScreen
+                cart={cart}
+                DeleteFromCart={DeleteFromCart}
+                cartQuantityHandler={cartQuantityHandler}
+              ></CartScreen>
+            </Route>
+            <PrivateRoute path="/profile">
+              <Header></Header>
+              <Profile></Profile>
+            </PrivateRoute>
+            <PrivateRoute path="/updateProfile">
+              <Header></Header>
+              <UpdateProfile></UpdateProfile>
+            </PrivateRoute>
+            <PrivateRoute path="/shipment">
+              <Header></Header>
+              <Shipment></Shipment>
+            </PrivateRoute>
+            <PrivateRoute path="/changeEmailAddress">
+              <Header></Header>
+              <ChangeEmailAddress></ChangeEmailAddress>
+            </PrivateRoute>
+            <PrivateRoute path="/changePassword">
+              <Header></Header>
+              <ChangePassword></ChangePassword>
+            </PrivateRoute>
+            <Route path="/signin">
+              <Header></Header>
+              <SignIn></SignIn>
+            </Route>
+            <Route path="/signup">
+              <Header></Header>
+              <Signup></Signup>
+            </Route>
+            <Route path="*">
+              <Error></Error>
+            </Route>
+          </Switch>
+        </Router>
       </cartContext.Provider>
     </AuthContextProvider>
   );

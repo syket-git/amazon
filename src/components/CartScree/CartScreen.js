@@ -1,27 +1,37 @@
 import React, { useContext, useState } from 'react';
 import { Link } from 'react-router-dom';
-import './CartScreen.css'
+import './CartScreen.css';
+import { useAuth } from '../useAuth/useAuth';
 
 const CartScreen = (props) => {
-
   let totalQuantity = props.cart.reduce((totalQ, item) => {
     return parseInt(totalQ) + parseInt(item.quantity);
   }, 0);
-  let subtotal = parseInt(props.cart.reduce((total, item) => {
-    return total + item.price * item.quantity;
-  }, 0));
+  let subtotal = parseInt(
+    props.cart.reduce((total, item) => {
+      return total + item.price * item.quantity;
+    }, 0)
+  );
 
-  const shipCost = parseInt((subtotal * (2/100)).toFixed(2));
-  const tax = parseInt((subtotal * (5/100)).toFixed(2));
+  const shipCost = parseInt((subtotal * (2 / 100)).toFixed(2));
+  const tax = parseInt((subtotal * (5 / 100)).toFixed(2));
   const total = (subtotal + shipCost + tax).toFixed(2);
+
+  const auth = useAuth();
 
   return (
     <div className="cartScreen">
       {props.cart.length === 0 ? (
-        <div style={{marginTop:'200px'}}>
-          <h4 className="font-weight-bold text-center">Your shopping cart is empty!</h4>
+        <div style={{ marginTop: '200px' }}>
+          <h4 className="font-weight-bold text-center">
+            Your shopping cart is empty!
+          </h4>
           <h3 className="font-weight-bold text-center">| |</h3>
-          <h4 className="font-weight-bold text-center"><Link className="text-success" to="/">Continue Shopping</Link></h4>
+          <h4 className="font-weight-bold text-center">
+            <Link className="text-success" to="/">
+              Continue Shopping
+            </Link>
+          </h4>
         </div>
       ) : (
         <div>
@@ -45,7 +55,12 @@ const CartScreen = (props) => {
                     />
                     <div>
                       <h3>
-                        <Link className="text-success" to={`/product/${item.id}`}>{item.name}</Link>
+                        <Link
+                          className="text-success"
+                          to={`/product/${item.id}`}
+                        >
+                          {item.name}
+                        </Link>
                       </h3>
                       <p>Size: {item.size}</p>
                       <p>
@@ -77,8 +92,7 @@ const CartScreen = (props) => {
               </div>
               <div className="col-md-4">
                 <div>
-                  <div style={{border: '1px solid #cccccc', padding:'20px'}}>
-                    
+                  <div style={{ border: '1px solid #cccccc', padding: '20px' }}>
                     <h6>Total Quantity: {totalQuantity}</h6>
                     <h5>Subtotal: ${subtotal}</h5>
                     <h5>Shipping cost: ${shipCost}</h5>
@@ -86,9 +100,20 @@ const CartScreen = (props) => {
                     <h4>In Total : ${total}</h4>
 
                     <div className="button">
-                      <button className="btn btn-warning Actual-button">Proceed to Checkout</button>
+                      {auth.user ? (
+                        <Link className="button" to="/shipment">
+                          <button className="btn btn-warning Actual-button">
+                            Proceed to Checkout
+                          </button>
+                        </Link>
+                      ) : (
+                        <Link className="button" to="/signin">
+                          <button className="btn btn-warning Actual-button">
+                            Login to Checkout
+                          </button>
+                        </Link>
+                      )}
                     </div>
-
                   </div>
                 </div>
               </div>

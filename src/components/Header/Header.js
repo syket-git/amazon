@@ -65,11 +65,18 @@ const Header = (props) => {
             </li>
 
             <li>
-              {auth.user ? <span>{auth.user.name}</span> : <Link to="/signin">Sign in</Link>}
+              {auth.user ? (
+                <Link to="/profile">{auth.user.name}</Link>
+              ) : (
+                <Link to="/signin">Sign in</Link>
+              )}
             </li>
             <li>
-              {auth.user ? <Link onClick={auth.signOut}>Sing out</Link> :  <Link to="/signup">Sign up</Link>}
-             
+              {auth.user ? (
+                <Link onClick={auth.signOut}>Sing out</Link>
+              ) : (
+                <Link to="/signup">Sign up</Link>
+              )}
             </li>
           </ul>
         </div>

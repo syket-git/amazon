@@ -15,37 +15,30 @@ export const AuthContextProvider = (props) => {
 };
 export const useAuth = () => useContext(AuthContext);
 
-export function PrivateRoute({ children, ...rest }){
-    const auth = useAuth();
-    return (
-      <Route
-        {...rest}
-        render={({ location }) =>
-          auth.user ? (
-            children
-          ) : (
-            <Redirect
-              to={{
-                pathname: "/signin",
-                state: { from: location }
-              }}
-            />
-          )
-        }
-      />
-    );
-  }
-
-
-
-
-
-
+export function PrivateRoute({ children, ...rest }) {
+  const auth = useAuth();
+  return (
+    <Route
+      {...rest}
+      render={({ location }) =>
+        auth.user ? (
+          children
+        ) : (
+          <Redirect
+            to={{
+              pathname: '/signin',
+              state: { from: location },
+            }}
+          />
+        )
+      }
+    />
+  );
+}
 
 const Auth = () => {
   const [user, setUser] = useState(null);
   console.log(user);
-
 
   const getUser = (user) => {
     const { displayName, email } = user;
@@ -99,6 +92,67 @@ const Auth = () => {
       });
   };
 
+  const updateName = (name) => {
+    firebase
+      .auth()
+      .currentUser.updateProfile({
+        displayName: name,
+      })
+      .then((res) => {
+        console.log(res);
+      })
+      .catch((err) => {
+        console.log(err.message);
+      });
+  };
+
+  const updateEmail = (currentPassword, newEmail) => {
+    reAuthenticate(currentPassword)
+      .then(() => {
+        firebase
+          .auth()
+          .currentUser.updateEmail(newEmail)
+          .then(() => {
+            alert('Email was changed');
+            window.location.replace('/updateProfile');
+          })
+          .catch(function (error) {
+            alert(error.message);
+          });
+      })
+      .catch(function (error) {
+        alert(error.message);
+      });
+  };
+
+  const updatePassword = (currentPassword, newPassword) => {
+    reAuthenticate(currentPassword)
+      .then(() => {
+        firebase
+          .auth()
+          .currentUser.updatePassword(newPassword)
+          .then(() => {
+            alert('Password was changes!');
+            signOut();
+          })
+          .catch(function (error) {
+            alert(error.message);
+          });
+      })
+      .catch(function (error) {
+        alert(error.message);
+      });
+  };
+
+  const reAuthenticate = (currentPassword) => {
+    const user = firebase.auth().currentUser;
+    const cred = firebase.auth.EmailAuthProvider.credential(
+      user.email,
+      currentPassword
+    );
+    return user.reauthenticateWithCredential(cred);
+  };
+
   useEffect(() => {
     firebase.auth().onAuthStateChanged(function (usr) {
       if (usr) {
@@ -115,6 +169,9 @@ const Auth = () => {
     createUser,
     signedInUser,
     signOut,
+    updateName,
+    updateEmail,
+    updatePassword,
   };
 };
 
