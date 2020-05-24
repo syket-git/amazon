@@ -9,6 +9,8 @@ import Error from './components/Error/Error';
 import SignIn from './components/SignIn/SignIn';
 import Signup from './components/Signup/Signup';
 import Cookies from 'js-cookie';
+import { AuthContextProvider } from './components/useAuth/useAuth';
+import {PrivateRoute} from './components/useAuth/useAuth';
 
 export const cartContext = createContext();
 
@@ -45,7 +47,8 @@ const App = () => {
   };
 
   return (
-    <cartContext.Provider value={cart}>
+    <AuthContextProvider>
+      <cartContext.Provider value={cart}>
       <Router>
         <Switch>
           <Route exact path="/">
@@ -56,14 +59,14 @@ const App = () => {
           <Route exact path="/product/:id">
             <ClickProduct cartHandler={cartHandler}></ClickProduct>
           </Route>
-          <Route exact path="/cart">
+          <PrivateRoute exact path="/cart">
             <Header></Header>
             <CartScreen
               cart={cart}
               DeleteFromCart={DeleteFromCart}
               cartQuantityHandler={cartQuantityHandler}
             ></CartScreen>
-          </Route>
+          </PrivateRoute>
           <Route path="/signin">
             <Header></Header>
             <SignIn></SignIn>
@@ -77,7 +80,8 @@ const App = () => {
           </Route>
         </Switch>
       </Router>
-    </cartContext.Provider>
+      </cartContext.Provider>
+    </AuthContextProvider>
   );
 };
 

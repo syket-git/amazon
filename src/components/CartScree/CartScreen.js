@@ -1,15 +1,13 @@
 import React, { useContext, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { cartContext } from '../../App';
 import './CartScreen.css'
 
 const CartScreen = (props) => {
-  const items = useContext(cartContext);
 
-  let totalQuantity = items.reduce((totalQ, item) => {
+  let totalQuantity = props.cart.reduce((totalQ, item) => {
     return parseInt(totalQ) + parseInt(item.quantity);
   }, 0);
-  let subtotal = parseInt(items.reduce((total, item) => {
+  let subtotal = parseInt(props.cart.reduce((total, item) => {
     return total + item.price * item.quantity;
   }, 0));
 
@@ -32,7 +30,7 @@ const CartScreen = (props) => {
           <div className="container-fluid">
             <div className="row">
               <div className="col-md-8">
-                {items.map((item) => (
+                {props.cart.map((item) => (
                   <div
                     style={{
                       border: '1px solid #cccccc',

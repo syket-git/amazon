@@ -1,32 +1,42 @@
 import React from 'react';
 import './SignIn.css';
 import { Link } from 'react-router-dom';
+import {useForm} from 'react-hook-form';
+import Auth from '../useAuth/useAuth';
 
 const SignIn = () => {
-  const handleSubmit = (e) => {
-    e.preventDefault();
-  };
+  const auth = Auth();
+  console.log(auth);
+  const {register, handleSubmit, errors, reset} = useForm();
+  const onSubmit = data => {
+    console.log(data)
+    auth.signedInUser(data.email, data.password);
+    reset();
+  }
   return (
     <div>
       <div className="container">
         <div className="form-width">
           <h3 className="text-center mb-3">Login</h3>
-          <form onSubmit={handleSubmit}>
+          {auth.user && <p className="red">{auth.user.err}</p>}
+          <form onSubmit={handleSubmit(onSubmit)}>
             <input
               className="form-control"
-              required
+              ref={register({required: true})}
               type="email"
               name="email"
               placeholder="Email"
             />
+            {errors.email && <p className="red">Email is required</p>}
 
             <input
               className="form-control"
-              required
+              ref={register({required: true})}
               type="password"
               name="password"
               placeholder="Password"
             />
+            {errors.password && <p className="red">Password is required</p>}
 
             <input
               className="form-control btn btn-warning Actual-button"

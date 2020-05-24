@@ -4,10 +4,15 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBars } from '@fortawesome/free-solid-svg-icons';
 import { Link } from 'react-router-dom';
 import { Badge } from 'react-bootstrap';
+import img from '../../images/logo.png';
 import { cartContext } from '../../App';
+import { useAuth } from '../useAuth/useAuth';
 
 const Header = (props) => {
-  const item = useContext(cartContext);
+  const auth = useAuth();
+  console.log(auth);
+
+  const items = useContext(cartContext);
   const handleOpen = () => {
     document.querySelector('.bar-part').classList.toggle('open');
   };
@@ -19,7 +24,13 @@ const Header = (props) => {
             <FontAwesomeIcon icon={faBars} />
           </span>
           <div className="h2">
-            <Link to="/">Amazon</Link>
+            <Link to="/">
+              <img
+                style={{ marginTop: '6px', marginLeft: '10px' }}
+                src={img}
+                alt=""
+              />
+            </Link>
           </div>
         </div>
         <div className="bar-part">
@@ -49,14 +60,16 @@ const Header = (props) => {
           <ul className="ml-auto">
             <li>
               <Link to="/cart">
-                Cart <Badge variant="warning">{item.length}</Badge>
+                Cart <Badge variant="warning">{items.length}</Badge>
               </Link>
             </li>
+
             <li>
-              <Link to="/signin">Sign in</Link>
+              {auth.user ? <span>{auth.user.name}</span> : <Link to="/signin">Sign in</Link>}
             </li>
             <li>
-              <Link to="/signup">Sing up</Link>
+              {auth.user ? <Link onClick={auth.signOut}>Sing out</Link> :  <Link to="/signup">Sign up</Link>}
+             
             </li>
           </ul>
         </div>

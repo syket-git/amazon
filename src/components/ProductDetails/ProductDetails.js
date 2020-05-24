@@ -3,10 +3,8 @@ import { Link } from 'react-router-dom';
 import './ProductDetails.css';
 import ReactImageMagnify from 'react-image-magnify';
 import { Badge } from 'react-bootstrap';
-import { cartContext } from '../../App';
 
 const ProductDetails = (props) => {
-  const item = useContext(cartContext);
   const [qty, setQty] = useState(1);
 
   const {
@@ -28,12 +26,10 @@ const ProductDetails = (props) => {
     props.cartHandler(product);
   };
 
-  console.log(props.cart);
 
   return (
     <div>
       <div className="container mt-5">
-        <p>Hello: {item.length}</p>
         <div className="row d-flex flex-wrap justify-content-between">
           <div className="col-md-4">
             <Link to="/">

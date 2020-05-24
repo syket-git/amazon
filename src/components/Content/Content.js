@@ -17,8 +17,11 @@ const Content = () => {
   return (
     <div className="d-flex flex-wrap justify-content-between">
       {loading ? (
-        products &&
+        products ? 
         products.map((pd) => <Products key={pd.id} product={pd}></Products>)
+        : 
+        <p>Server is not running properly</p>
+       
       ) : (
         <div className="spin">
           <Spinner className="m-auto" animation="grow" />
