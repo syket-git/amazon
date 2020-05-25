@@ -50,6 +50,9 @@ const SignIn = () => {
               Sign up
             </Link>
           </p>
+          <Link to="/forgotPassword">
+            <p className="text-center text-primary">Forgot Password?</p>
+          </Link>
         </div>
       </div>
     </div>

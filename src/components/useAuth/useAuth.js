@@ -153,6 +153,16 @@ const Auth = () => {
     return user.reauthenticateWithCredential(cred);
   };
 
+  const forgotPassword = (email) =>{
+    firebase.auth().sendPasswordResetEmail(email)
+    .then(() => {
+      alert("Email sent!")
+      window.location.replace("/")
+    }).catch(function(error){
+      alert(error.message);
+    })
+  }
+
   useEffect(() => {
     firebase.auth().onAuthStateChanged(function (usr) {
       if (usr) {
@@ -172,6 +182,7 @@ const Auth = () => {
     updateName,
     updateEmail,
     updatePassword,
+    forgotPassword
   };
 };
 

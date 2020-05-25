@@ -26,6 +26,7 @@ const Shipment = (props) => {
       shipInfo: shipInfo,
       cart: props.cart,
       payment: payment,
+      date: new Date(),
     };
     fetch('https://stormy-atoll-94872.herokuapp.com/placeOrder', {
       method: 'POST',

@@ -16,6 +16,7 @@ import Profile from './components/Profile/Profile';
 import UpdateProfile from './components/UpdateProfile/UpdateProfile';
 import ChangeEmailAddress from './components/ChangeEmailAddress/ChangeEmailAddress';
 import ChangePassword from './components/ChangePassword/ChangePassword';
+import ForgotPassword from './components/ForgotPassword/ForgotPassword';
 
 export const cartContext = createContext();
 
@@ -96,6 +97,10 @@ const App = () => {
               <Header></Header>
               <ChangePassword></ChangePassword>
             </PrivateRoute>
+            <Route path="/forgotPassword">
+              <Header></Header>
+              <ForgotPassword></ForgotPassword>
+            </Route>
             <Route path="/signin">
               <Header></Header>
               <SignIn></SignIn>
