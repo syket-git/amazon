@@ -1,11 +1,25 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { useAuth } from '../useAuth/useAuth';
 import './Profile.css';
 import { Link } from 'react-router-dom';
 
 const Profile = () => {
+  const [orders, setOrders] = useState([]);
   const auth = useAuth();
-  console.log(auth);
+
+  useEffect(() => {
+    const email = auth.user.email;
+    console.log(email);
+    fetch('https://stormy-atoll-94872.herokuapp.com/yourOrders/' + email)
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+        setOrders(data);
+      });
+  }, []);
+
+  console.log(orders);
+
   return (
     <div>
       <div className="container mt-5">
@@ -28,6 +42,9 @@ const Profile = () => {
           <div className="col-md-8">
             <div>
               <h2 className="text-center">Your Orders</h2>
+              {orders.map((order) => (
+                <li>{order._id}</li>
+              ))}
             </div>
           </div>
         </div>
