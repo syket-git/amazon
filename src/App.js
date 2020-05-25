@@ -51,6 +51,10 @@ const App = () => {
     setCart(newCart);
   };
 
+  const clearCart = () => {
+    setCart([]);
+  };
+
   return (
     <AuthContextProvider>
       <cartContext.Provider value={cart}>
@@ -82,7 +86,7 @@ const App = () => {
             </PrivateRoute>
             <PrivateRoute path="/shipment">
               <Header></Header>
-              <Shipment></Shipment>
+              <Shipment clearCart={clearCart} cart={cart}></Shipment>
             </PrivateRoute>
             <PrivateRoute path="/changeEmailAddress">
               <Header></Header>
