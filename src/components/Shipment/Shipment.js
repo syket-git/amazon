@@ -28,7 +28,7 @@ const Shipment = (props) => {
       payment: payment,
       date: new Date(),
     };
-    fetch('https://stormy-atoll-94872.herokuapp.com/placeOrder', {
+    fetch('https://floating-crag-86986.herokuapp.com/placeOrder', {
       method: 'POST',
       body: JSON.stringify(orderDetails),
       headers: {
@@ -38,6 +38,8 @@ const Shipment = (props) => {
       .then((data) => {
         console.log(data);
         props.clearCart();
+        window.location.replace('/');
+        alert('Check your profile page');
       })
       .catch((error) => {
         console.log(error.message);

@@ -6,7 +6,7 @@ const Content = () => {
   const [products, setProducts] = useState();
   const [loading, setLoading] = useState(false);
   useEffect(() => {
-    fetch('https://stormy-atoll-94872.herokuapp.com/products')
+    fetch('https://floating-crag-86986.herokuapp.com/products')
       .then((res) => res.json())
       .then((data) => {
         setLoading(true);

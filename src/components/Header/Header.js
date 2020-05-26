@@ -66,7 +66,7 @@ const Header = (props) => {
 
             <li>
               {auth.user ? (
-                <Link to="/profile">{auth.user.name}</Link>
+                <Link to={`/profile/${auth.user.email}`}>{auth.user.name}</Link>
               ) : (
                 <Link to="/signin">Sign in</Link>
               )}

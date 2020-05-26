@@ -9,7 +9,7 @@ const ClickProduct = (props) => {
   const [loading, setLoading] = useState(false);
   const { id } = useParams();
   useEffect(() => {
-    fetch('https://stormy-atoll-94872.herokuapp.com/product/' + parseInt(id))
+    fetch('https://floating-crag-86986.herokuapp.com/product/' + parseInt(id))
       .then((res) => res.json())
       .then((data) => {
         setLoading(true);

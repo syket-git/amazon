@@ -77,7 +77,7 @@ const App = () => {
                 cartQuantityHandler={cartQuantityHandler}
               ></CartScreen>
             </Route>
-            <PrivateRoute path="/profile">
+            <PrivateRoute path="/profile/:email">
               <Header></Header>
               <Profile></Profile>
             </PrivateRoute>
