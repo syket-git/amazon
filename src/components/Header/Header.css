@@ -86,3 +86,12 @@ a:hover{
 .third-part ul li:hover{
     text-decoration: none;
 }
+
+@media all and (max-width: 500px){
+    .first{
+        margin: 0 auto;
+    }
+    .third-part{
+        margin: 0 auto;
+    }
+}

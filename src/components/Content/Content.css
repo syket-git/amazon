@@ -4,3 +4,9 @@
     margin-top: 300px;
     margin-bottom: 300px;
 }
+
+@media all and (max-width: 640px){
+    .justify-content-between{
+        justify-content: center !important;
+    }
+}

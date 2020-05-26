@@ -10,7 +10,7 @@ const UpdateProfile = () => {
     console.log(data);
     auth.updateName(data.name);
     reset();
-    window.location.replace('/updateProfile');
+    window.location.replace('/');
   };
   return (
     <div>

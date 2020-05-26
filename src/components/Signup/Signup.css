@@ -6,8 +6,13 @@
 .form-width input{
     margin-bottom: 15px;
 }
-
 .red{
     color: red; 
     
 }
+
+@media all and (max-width: 992px){
+    .form-width{
+        max-width: 80%;
+    }
+} 

@@ -20,6 +20,8 @@ const Profile = () => {
       });
   }, [email]);
 
+  
+
   return (
     <div>
       <div className="container mt-5">
@@ -43,7 +45,7 @@ const Profile = () => {
           <div className="col-md-8">
             <div>
               <h2 className="text-center">Your Orders</h2>
-              <Table striped bordered hover size="sm">
+              <Table className="table-responsive" striped bordered hover size="sm">
                 <thead>
                   <tr>
                     <th>Order Id</th>
@@ -53,10 +55,13 @@ const Profile = () => {
                 </thead>
                 <tbody>
                   {loading ? (
-                    orders === [] ? (
-                      <h4 className="text-center">
-                        Sorry we have not find any order in your gmail
-                      </h4>
+                    orders.length === 0 ? (
+                      <tr>
+                        <h4 className="text-center">
+                          Sorry we have not found any order in your current
+                          email
+                        </h4>
+                      </tr>
                     ) : (
                       orders.map((order) => (
                         <tr>

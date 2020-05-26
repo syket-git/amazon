@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react';
+import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { useAuth } from '../useAuth/useAuth';
 import { loadStripe } from '@stripe/stripe-js';
@@ -12,7 +12,7 @@ const Shipment = (props) => {
     'pk_test_RoZEYmMGVLAcXIQR9w2H97Rt00WWxZxRxj'
   );
   const auth = useAuth();
-  const { register, handleSubmit, errors, watch, reset } = useForm();
+  const { register, handleSubmit, errors, reset } = useForm();
   const onSubmit = (data) => {
     console.log(data);
     setShipInfo(data);

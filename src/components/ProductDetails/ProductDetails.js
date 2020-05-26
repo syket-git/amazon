@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import './ProductDetails.css';
 import ReactImageMagnify from 'react-image-magnify';
@@ -8,7 +8,6 @@ const ProductDetails = (props) => {
   const [qty, setQty] = useState(1);
 
   const {
-    id,
     name,
     img,
     description,

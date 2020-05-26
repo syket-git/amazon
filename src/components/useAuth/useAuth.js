@@ -58,7 +58,7 @@ const Auth = () => {
           .then(() => {
             const signedIn = getUser(res.user);
             setUser(signedIn);
-            window.history.back();
+            window.location.replace('/');
           });
       })
       .catch((err) => {
@@ -114,7 +114,7 @@ const Auth = () => {
           .currentUser.updateEmail(newEmail)
           .then(() => {
             alert('Email was changed');
-            window.location.replace('/updateProfile');
+            window.location.replace('/');
           })
           .catch(function (error) {
             alert(error.message);
@@ -153,15 +153,18 @@ const Auth = () => {
     return user.reauthenticateWithCredential(cred);
   };
 
-  const forgotPassword = (email) =>{
-    firebase.auth().sendPasswordResetEmail(email)
-    .then(() => {
-      alert("Email sent!")
-      window.location.replace("/")
-    }).catch(function(error){
-      alert(error.message);
-    })
-  }
+  const forgotPassword = (email) => {
+    firebase
+      .auth()
+      .sendPasswordResetEmail(email)
+      .then(() => {
+        alert('Email sent!');
+        window.location.replace('/');
+      })
+      .catch(function (error) {
+        alert(error.message);
+      });
+  };
 
   useEffect(() => {
     firebase.auth().onAuthStateChanged(function (usr) {
@@ -182,7 +185,7 @@ const Auth = () => {
     updateName,
     updateEmail,
     updatePassword,
-    forgotPassword
+    forgotPassword,
   };
 };
 
