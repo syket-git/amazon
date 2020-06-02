@@ -17,6 +17,7 @@ import UpdateProfile from './components/UpdateProfile/UpdateProfile';
 import ChangeEmailAddress from './components/ChangeEmailAddress/ChangeEmailAddress';
 import ChangePassword from './components/ChangePassword/ChangePassword';
 import ForgotPassword from './components/ForgotPassword/ForgotPassword';
+import MessengerCustomerChat from 'react-messenger-customer-chat';
 
 export const cartContext = createContext();
 
@@ -57,6 +58,9 @@ const App = () => {
   };
 
   return (
+    <div>
+
+    
     <AuthContextProvider>
       <cartContext.Provider value={cart}>
         <Router>
@@ -116,6 +120,14 @@ const App = () => {
         </Router>
       </cartContext.Provider>
     </AuthContextProvider>
+    <div>
+    <MessengerCustomerChat
+          pageId="569663633384208"
+          appId="3502355216449313"
+      />
+      </div>
+    </div>
+    </div>
   );
 };
 

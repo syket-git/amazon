@@ -18,6 +18,7 @@
     "react-dom": "^16.13.1",
     "react-hook-form": "^5.7.2",
     "react-image-magnify": "^2.7.4",
+    "react-messenger-customer-chat": "^0.7.2",
     "react-owl-carousel": "^2.3.1",
     "react-router-dom": "^5.2.0",
     "react-scripts": "3.4.1"
